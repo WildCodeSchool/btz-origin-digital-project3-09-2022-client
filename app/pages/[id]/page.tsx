@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CarouselStatic from "../../../src/components/Sections/CarouselStatic";
 import Grid from "../../../src/components/Sections/Grid";
 import HeroSlider from "../../../src/components/Sections/HeroSlider";
@@ -56,11 +57,17 @@ export default async function Page({ params }) {
       {page.pagesAdvertisings.map((section) => (
         <div>
           <p>{section.advertisings.title}</p>
-          <img
-            className="w-full"
-            src={section.advertisings.imageUrl}
-            alt="ad"
-          />
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href={section.advertisings.linkTo}
+          >
+            <img
+              className="w-full"
+              src={section.advertisings.imageUrl}
+              alt="ad"
+            />
+          </a>
         </div>
       ))}
     </div>
