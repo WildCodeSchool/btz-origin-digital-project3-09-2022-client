@@ -8,7 +8,7 @@ type Props = {
 
 export default function Navbar({ pages }: Props) {
   return (
-    <nav className="fixed top-0 h-20 flex justify-between w-full bg-primary_bg text-primary_font text-lg">
+    <nav className="sticky z-50 top-0 h-20 flex justify-between w-full bg-primary_bg text-primary_font text-lg">
       <ul className="flex items-center px-2">
         <Link href="/">
           <svg

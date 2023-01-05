@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="fixed w-full bottom-0 bg-footer text-white p-4  flex items-center justify-between">
+    <footer className="w-full bg-footer text-white p-4  flex items-center justify-between">
       <ul className="flex items-center">
         <li className="border-r-2 px-2">
           <a href="http://www.google.com" className="hover:underline">

@@ -17,10 +17,8 @@ const getAllPages = async () => {
 export default async function Layout({ children }: Props) {
   const pages = await getAllPages();
   return (
-    <html lang="en">
-      {}
-      <head />
-      <body>
+    <html lang="fr">
+      <body className="relative">
         <Navbar pages={pages} />
         <main>{children}</main>
         <Footer />
