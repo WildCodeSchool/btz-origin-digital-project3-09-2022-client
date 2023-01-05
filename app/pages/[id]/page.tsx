@@ -2,30 +2,6 @@ import CarouselStatic from "../../../src/components/Sections/CarouselStatic";
 import Grid from "../../../src/components/Sections/Grid";
 import HeroSlider from "../../../src/components/Sections/HeroSlider";
 
-type Tvideo = {
-  id: string;
-  title: string;
-  description: string;
-  display: boolean;
-  thumbnailUrl: string;
-  videoUrl: string;
-  teaserUrl: string;
-  isPublic: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-  nbViews: number;
-  duration: number;
-};
-
-type TSectionStatic = {
-  id: string;
-  title: string;
-  description: string;
-  isHero: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
 const getMultipleRandom = (arr, num) => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, num);
