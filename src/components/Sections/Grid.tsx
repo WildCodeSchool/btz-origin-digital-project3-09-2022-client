@@ -4,10 +4,10 @@ import Link from "next/link";
 
 interface IProps {
   videos: any;
-  title: any;
+  title: string;
 }
 
-export default function Grid({ videos, title }) {
+export default function Grid({ videos, title }: IProps) {
   return (
     <div className="flex flex-col">
       <p>{title}</p>

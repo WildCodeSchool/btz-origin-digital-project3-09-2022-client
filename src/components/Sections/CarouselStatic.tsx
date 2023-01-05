@@ -26,10 +26,10 @@ const responsive = {
 
 interface IProps {
   videos: any;
-  title: any;
+  title: string;
 }
 
-export default function CarouselStatic({ videos, title }) {
+export default function CarouselStatic({ videos, title }: IProps) {
   return (
     <div className="flex flex-col">
       <p>{title}</p>

@@ -1,27 +1,3 @@
-type Tvideo = {
-  id: string;
-  title: string;
-  description: string;
-  display: boolean;
-  thumbnailUrl: string;
-  videoUrl: string;
-  teaserUrl: string;
-  isPublic: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-  nbViews: number;
-  duration: number;
-};
-
-type TSectionStatic = {
-  id: string;
-  title: string;
-  description: string;
-  isHero: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
 const getOneVideo = async (id: any) => {
   const res = await fetch(`${process.env.API_URL}/videos/${id}` || "apiurl");
   const videoJson = await res.json();

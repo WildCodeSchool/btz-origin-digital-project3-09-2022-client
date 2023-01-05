@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ReactPlayer from "react-player";
 
 const responsiveHero = {
   superLargeDesktop: {
@@ -27,10 +26,10 @@ const responsiveHero = {
 
 interface IProps {
   videos: any;
-  title: any;
+  title: string;
 }
 
-export default function HeroSlider({ videos, title }) {
+export default function HeroSlider({ videos, title }: IProps) {
   return (
     <div className="flex flex-col">
       <p>{title}</p>
