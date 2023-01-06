@@ -33,6 +33,18 @@ export type TUser = {
   role: string;
 };
 
+export type TUserWithoutPassword = {
+  id: string;
+  firstname: string;
+  lastname: string;
+  username: string;
+  email: string;
+  imageUrl: string;
+  createdAt: Date;
+  updatedAt: Date;
+  role: string;
+};
+
 export type TTag = {
   id: string;
   name: string;
@@ -95,4 +107,14 @@ export type TPageAdvertising = {
   position: number;
   createdAt: Date;
   updatedAt: Date;
+};
+
+export type TCredentials = {
+  email: string;
+  password: string;
+};
+
+export type AuthState = {
+  user: TUser | null;
+  isAuth: boolean;
 };
