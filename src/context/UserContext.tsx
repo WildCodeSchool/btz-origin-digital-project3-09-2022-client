@@ -1,7 +1,9 @@
+"use client";
+
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/dot-notation */
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useState } from "react";
 import {
   TUserWithoutPassword,
@@ -41,8 +43,9 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         user: data,
       }));
 
-      const token = headers["Authorisation"];
-      axiosInstance.defaults.headers.common["Authorisation"] = token;
+      const token = headers["authorization"];
+
+      axiosInstance.defaults.headers.common["authorization"] = token;
       localStorage.setItem("token", token || "");
       router.push("/");
     } catch (error) {
@@ -55,7 +58,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
       user: null,
     }));
     localStorage.removeItem("token");
-    axiosInstance.defaults.headers.common["Authorisation"] = "";
+    axiosInstance.defaults.headers.common["authorization"] = "";
     router.push("/auth/signin");
   };
 
