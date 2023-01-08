@@ -33,6 +33,15 @@ export type TUser = {
   role: string;
 };
 
+export type TNewUser = {
+  firstname: string;
+  lastname: string;
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
 export type TUserWithoutPassword = {
   id: string;
   firstname: string;

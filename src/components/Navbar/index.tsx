@@ -36,7 +36,9 @@ export default function Navbar({ pages }: Props) {
       <ul className="flex items-center">
         <li className="px-2">Admin</li>
         <li className="px-2">My Favorites</li>
-        <li className="px-2 border-2 border-primary_font">LOG IN</li>
+        <li className="px-2 border-2 border-primary_font">
+          <Link href="/auth/signin">LOG IN</Link>
+        </li>
       </ul>
     </nav>
   );
