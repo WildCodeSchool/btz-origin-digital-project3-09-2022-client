@@ -3,6 +3,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {
   pages: any;
@@ -11,7 +12,7 @@ type Props = {
 export default function Navbar({ pages }: Props) {
   return (
     <nav className="sticky z-50 top-0 h-20 flex justify-between w-full bg-primary_bg text-primary_font text-lg">
-      <ul className="flex items-center px-2">
+      <ul className="w-1/3 invisible flex items-center px-2 md:visible">
         <Link href="/">
           <svg
             width="15"
@@ -32,12 +33,16 @@ export default function Navbar({ pages }: Props) {
           </Link>
         ))}
       </ul>
-      <img width="150px" src="/wyw_logo.svg" alt="logo" />
-      <ul className="flex items-center">
-        <li className="px-2">Admin</li>
-        <li className="px-2">My Favorites</li>
-        <li className="px-2 border-2 border-primary_font">LOG IN</li>
-      </ul>
+      <Image src="/wyw_logo.svg" width={150} height={200} alt="logo" />
+      <div className="w-1/3 flex">
+        <ul className="w-2/3 flex items-center">
+          <li className="hidden px-2 md:flex">Admin</li>
+          <li className="hidden px-2 md:flex">My Favorites</li>
+        </ul>
+        <div className="w-1/3 grid place-items-center border-2 m-4 border-primary_font">
+          LOG IN
+        </div>
+      </div>
     </nav>
   );
 }
