@@ -26,37 +26,27 @@ const responsiveHero = {
 
 interface IProps {
   videos: any;
-  title: string;
 }
 
-export default function HeroSlider({ videos, title }: IProps) {
+export default function HeroSlider({ videos }: IProps) {
   return (
     <div className="flex flex-col">
-      <p>{title}</p>
       <Carousel ssr={false} responsive={responsiveHero}>
         {videos.map((video) => (
-          <div className="relative">
-            <Link
-              className="absolute px-2 text-2xl z-50"
-              key={video.id}
-              href={`/videos/${video.id}`}
-            >
-              {video.title}
-            </Link>
+          <div key={video.id}>
             <video
-              className="w-screen"
+              className="w-full h-full z-10"
               key={video.id}
               src={video.videoUrl}
-              controls
             >
               <track kind="captions" />
             </video>
-            {/* <ReactPlayer
-              controls
-              style={{ width: "500px", height: "500px" }}
-              url={video.videoUrl}
-              // url="https://www.youtube.com/watch?v=8EKlDCwsyR0"
-            /> */}
+            <div className="absolute inset-x-0 bottom-0 text-2xl z-50 p-4 bg-gray-700 bg-opacity-25">
+              <Link key={video.id} href={`/videos/${video.id}`}>
+                {video.title}
+              </Link>
+              <p className="text-lg">{video.description}</p>
+            </div>
           </div>
         ))}
       </Carousel>
