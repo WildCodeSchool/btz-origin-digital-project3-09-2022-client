@@ -32,23 +32,25 @@ export default function HeroSlider({ videos }: IProps) {
   return (
     <div className="flex flex-col">
       <Carousel ssr={false} responsive={responsiveHero}>
-        {videos.map((video) => (
-          <div key={video.id}>
-            <video
-              className="w-full h-full z-10"
-              key={video.id}
-              src={video.videoUrl}
-            >
-              <track kind="captions" />
-            </video>
-            <div className="absolute inset-x-0 bottom-0 text-2xl z-50 p-4 bg-gray-700 bg-opacity-25">
-              <Link key={video.id} href={`/videos/${video.id}`}>
-                {video.title}
-              </Link>
-              <p className="text-lg">{video.description}</p>
+        {videos
+          .filter((video) => video.display === true)
+          .map((video) => (
+            <div key={video.id}>
+              <video
+                className="w-full h-full z-10"
+                key={video.id}
+                src={video.videoUrl}
+              >
+                <track kind="captions" />
+              </video>
+              <div className="absolute inset-x-0 bottom-0 text-2xl z-50 p-4 bg-gray-700 bg-opacity-25">
+                <Link key={video.id} href={`/videos/${video.id}`}>
+                  {video.title}
+                </Link>
+                <p className="text-lg">{video.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </Carousel>
     </div>
   );
