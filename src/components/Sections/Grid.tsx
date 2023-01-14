@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useAuth } from "../../context/UserContext";
+import { Tvideo } from "../../types/apiTypes";
 
 interface IProps {
-  videos: any;
+  videos: Tvideo[];
   title: string;
 }
 
@@ -16,8 +17,8 @@ export default function Grid({ videos, title }: IProps) {
       <p className="text-2xl p-3">{title}</p>
       <div className="grid grid-cols-4 gap-4">
         {videos
-          .filter((video) => video.display === true)
-          .map((video) => (
+          .filter((video: Tvideo) => video.display === true)
+          .map((video: Tvideo) => (
             <div key={video.id} className="relative">
               <video className="w-full h-full z-10 " src={video.videoUrl}>
                 <track kind="captions" />

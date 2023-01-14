@@ -8,7 +8,7 @@ import { TPage } from "../../types/apiTypes";
 
 export default function Navbar({ pages }: TPage[]) {
   return (
-    <nav className="sticky z-50 top-0 h-20 flex justify-between w-full bg-primary_bg text-primary_font text-lg">
+    <nav className="fixed top:0 bg-transparent z-50 h-20 flex justify-between w-full text-primary_font text-lg">
       {/* Check if one of the pages fetched as a title Homepage. If yes, it will appear as the first link using the "Home" icon */}
 
       <ul className="w-1/3 invisible flex items-center px-2 md:visible">

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Carousel from "react-multi-carousel";
+import { Tvideo } from "../../types/apiTypes";
 import "react-multi-carousel/lib/styles.css";
 
 const responsiveHero = {
@@ -25,7 +26,7 @@ const responsiveHero = {
 };
 
 interface IProps {
-  videos: any;
+  videos: Tvideo[];
 }
 
 export default function HeroSlider({ videos }: IProps) {

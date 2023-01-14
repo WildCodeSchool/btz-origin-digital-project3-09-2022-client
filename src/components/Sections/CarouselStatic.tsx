@@ -4,6 +4,7 @@ import Link from "next/link";
 import Carousel from "react-multi-carousel";
 import { useAuth } from "../../context/UserContext";
 import "react-multi-carousel/lib/styles.css";
+import { Tvideo } from "../../types/apiTypes";
 
 const responsive = {
   superLargeDesktop: {
@@ -26,7 +27,7 @@ const responsive = {
 };
 
 interface IProps {
-  videos: any;
+  videos: Tvideo[];
   title: string;
 }
 
@@ -40,8 +41,8 @@ export default function CarouselStatic({ videos, title }: IProps) {
         {videos
           .filter((video) => video.display === true)
           .map((video) => (
-            <div key={video.id} className="relative">
-              <video className="w-full h-full z-10 " src={video.videoUrl}>
+            <div key={video.id} className="relative p-2">
+              <video className="w-full h-full z-10" src={video.videoUrl}>
                 <track kind="captions" />
               </video>
 
@@ -67,9 +68,10 @@ export default function CarouselStatic({ videos, title }: IProps) {
               ) : (
                 ""
               )}
-              <div className="absolute bottom-0 left-0 right-0 p-2  bg-gray-700 bg-opacity-25">
+
+              <div className="absolute bottom-0 left-0 right-0 bg-gray-700 bg-opacity-25 m-2 px-2">
                 {isAuth === false && video.isPublic === false ? (
-                  <p>{video.title}</p>
+                  <span>{video.title}</span>
                 ) : (
                   <Link href={`/videos/${video.id}`}>{video.title}</Link>
                 )}
