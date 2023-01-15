@@ -7,3 +7,8 @@
     display: flex;
   }
 }
+
+.react-multi-carousel-list {
+  z-index: 0;
+}
+

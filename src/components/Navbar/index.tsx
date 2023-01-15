@@ -18,7 +18,9 @@ export default function Navbar({ pages }: TPage[]) {
     }
   };
 
-  window.addEventListener("scroll", changeColor);
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", changeColor);
+  }
 
   return (
     <nav
