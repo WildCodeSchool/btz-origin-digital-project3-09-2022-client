@@ -37,7 +37,7 @@ export default async function Page({ params }) {
   const sections = extractSections(page);
 
   return (
-    <div className=" bg-primary_bg text-primary_font  w-screen">
+    <div className=" bg-primary_bg text-primary_font w-screen min-h-[calc(100vh-64px)]">
       {page.title !== "Homepage" ? (
         <div className="bg-primary_bg h-20"> </div>
       ) : (

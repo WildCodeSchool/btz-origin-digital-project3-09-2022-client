@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Carousel from "react-multi-carousel";
+import Image from "next/image";
 import { Tvideo } from "../../types/apiTypes";
 import "react-multi-carousel/lib/styles.css";
 
@@ -57,6 +58,16 @@ export default function HeroSlider({ videos }: IProps) {
                 <p className="hidden md:flex md: text-lg">
                   {video.description}
                 </p>
+              </div>
+              <div className="absolute inset-x-0 bottom-1/2 left-1/2">
+                <Link key={video.id} href={`/videos/${video.id}`}>
+                  <Image
+                    src="/play_logo.svg"
+                    width={70}
+                    height={70}
+                    alt="logo play"
+                  />
+                </Link>
               </div>
             </div>
           ))}

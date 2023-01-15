@@ -11,7 +11,7 @@ export default async function Page({ params }) {
   const video = await getOneVideo(params.id);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-[calc(100vh-64px)]">
       <div className="bg-primary_bg h-20"> </div>
       <div className="text-primary_font flex">
         <div className="flex flex-col w-1/2 p-4">

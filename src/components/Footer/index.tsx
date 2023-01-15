@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="w-screen bg-footer text-white p-4  flex items-center justify-between">
+    <footer className="w-screen bg-footer text-white p-4  flex items-center justify-between h-16">
       <ul className="flex items-center">
         <li className="border-r-2 px-2">
           <a href="http://www.google.com" className="hover:underline">
