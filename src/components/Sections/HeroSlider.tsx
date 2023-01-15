@@ -54,7 +54,9 @@ export default function HeroSlider({ videos }: IProps) {
                 <Link key={video.id} href={`/videos/${video.id}`}>
                   {video.title}
                 </Link>
-                <p className="text-lg">{video.description}</p>
+                <p className="hidden md:flex md: text-lg">
+                  {video.description}
+                </p>
               </div>
             </div>
           ))}

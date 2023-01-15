@@ -49,7 +49,13 @@ export default async function Page({ params }) {
           </div>
         </div>
         <div className="w-1/2 p-4">
-          <video key={video.id} src={video.videoUrl} controls>
+          <video
+            key={video.id}
+            src={video.videoUrl}
+            controls
+            // controls={isAuth === false && video.isPublic === false}
+          >
+            {" "}
             <track kind="captions" />
           </video>
         </div>

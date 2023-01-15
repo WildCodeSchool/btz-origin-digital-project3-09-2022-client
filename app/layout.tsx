@@ -23,7 +23,7 @@ export default async function Layout({ children }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <UserContextProvider>
-        <body className="min-h-screen bg-primary_bg flex flex-col align-middle items-start justify-start">
+        <body className="bg-primary_bg flex flex-col">
           <Navbar pages={pages} />
           <main className="flex-grow flex">{children}</main>
           <Footer />
