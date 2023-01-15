@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
 import { useAuth } from "../../../src/context/UserContext";
 
@@ -48,11 +49,23 @@ export default function Signin() {
             onChange={handleChange}
             required
           />
+          <h6 className="flex justify-center text-xs">
+            Need an account ?
+            <ul>
+              <li>
+                <Link href="/auth/signup">SIGN UP</Link>
+              </li>
+            </ul>
+          </h6>
         </div>
       </form>
-      <div className="">
-        <button type="button" onClick={() => signIn(credentials)}>
-          Sign In
+      <div>
+        <button
+          className="text-primary_font bg-footer px-5 py-1 rounded-lg "
+          type="submit"
+          onClick={() => signIn(credentials)}
+        >
+          SIGN IN
         </button>
       </div>
     </div>
