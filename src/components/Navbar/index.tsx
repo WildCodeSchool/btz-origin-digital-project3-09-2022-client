@@ -3,12 +3,31 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import Image from "next/image";
 import { TPage } from "../../types/apiTypes";
 
 export default function Navbar({ pages }: TPage[]) {
+  // change nav color on scrolling
+  const [color, setColor] = useState(false);
+  const changeColor = () => {
+    if (window.scrollY >= 80) {
+      setColor(true);
+    } else {
+      setColor(false);
+    }
+  };
+
+  window.addEventListener("scroll", changeColor);
+
   return (
-    <nav className="fixed top:0 bg-transparent z-50 h-20 flex justify-between w-full text-primary_font text-lg">
+    <nav
+      className={
+        color
+          ? "fixed top:0 bg-primary_bg z-50 h-20 flex justify-between w-full text-primary_font text-lg"
+          : "fixed top:0 bg-transparent z-50 h-20 flex justify-between w-full text-primary_font text-lg"
+      }
+    >
       {/* Check if one of the pages fetched as a title Homepage. If yes, it will appear as the first link using the "Home" icon */}
 
       <ul className="w-1/3 invisible flex items-center px-2 md:visible">
