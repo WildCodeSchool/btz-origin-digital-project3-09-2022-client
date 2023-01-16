@@ -46,7 +46,6 @@ export default function CarouselStatic({ videos, title }: IProps) {
               <video className="w-full h-full z-10" src={video.videoUrl}>
                 <track kind="captions" />
               </video>
-
               {isAuth === false && video.isPublic === false ? (
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
                   <Image

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cookies } from "next/headers"; // Import cookies
 
 const getOneVideo = async (id: any) => {
   const res = await fetch(`${process.env.API_URL}/videos/${id}` || "apiurl", {
@@ -11,6 +12,7 @@ const getOneVideo = async (id: any) => {
 
 export default async function Page({ params }) {
   const video = await getOneVideo(params.id);
+  const token = cookies().get("token");
   const changeDate = (dateISO) => {
     const date = new Date(dateISO);
     const jour = date.getDay();
@@ -58,15 +60,19 @@ export default async function Page({ params }) {
           </div>
         </div>
         <div className="w-1/2 p-4">
-          <video
-            key={video.id}
-            src={video.videoUrl}
-            controls
-            // controls={isAuth === false && video.isPublic === false}
-          >
-            {" "}
-            <track kind="captions" />
-          </video>
+          {token || video.isPublic ? (
+            <video key={video.id} src={video.videoUrl} controls>
+              {" "}
+              <track kind="captions" />
+            </video>
+          ) : (
+            <Image
+              src={video.thumbnailUrl}
+              alt="lock"
+              width="200"
+              height="200"
+            />
+          )}
         </div>
       </div>
     </div>

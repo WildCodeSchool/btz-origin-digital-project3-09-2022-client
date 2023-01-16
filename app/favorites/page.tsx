@@ -19,6 +19,7 @@ const getFavoriteVideos = async () => {
 
 export default async function Favorites() {
   const videos = await getFavoriteVideos();
+  console.log(videos);
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-64px)]">
