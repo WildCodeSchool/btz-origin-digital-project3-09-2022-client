@@ -51,9 +51,9 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex justify-center items-center align-middle flex-col text-primary_font min-h-[calc(100vh-64px)] flex-grow w-screen">
+    <div className="flex justify-center items-center align-middle flex-col text-black min-h-[calc(100vh-64px)] flex-grow w-screen">
       <div>
-        <h1 className="flex justify-center py-5 text-xl">
+        <h1 className="flex justify-center text-primary_font py-5 text-xl">
           Create Your Account
         </h1>
       </div>
@@ -134,7 +134,7 @@ export default function Signup() {
           />
         </div>
       </form>
-      <div>
+      <div className="py-5">
         <button
           className="text-primary_font bg-footer px-5 py-1 rounded-lg "
           type="submit"
