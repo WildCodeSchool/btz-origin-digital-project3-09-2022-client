@@ -5,11 +5,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
+import { useAuth } from "../../context/UserContext";
 import Menuburger from "../Menuburger";
 import { TPage } from "../../types/apiTypes";
 
 export default function Navbar({ pages }: TPage[]) {
   // change nav color on scrolling
+  const { isAuth } = useAuth();
   const [color, setColor] = useState(false);
   const changeColor = () => {
     if (window.scrollY >= 80) {
@@ -36,7 +38,7 @@ export default function Navbar({ pages }: TPage[]) {
       <Menuburger pages={pages} className="sm:invisible" />
 
       <ul className="w-1/3 invisible flex items-center px-2 md:visible">
-        {pages.filter((page: TPage) => page.title === "Homepage").length > 0 ? (
+        {pages.filter((page: TPage) => page.title !== "Homepage").length > 0 ? (
           <Link
             href={`/pages/${
               pages.filter((page: TPage) => page.title === "Homepage")[0].id
@@ -59,7 +61,13 @@ export default function Navbar({ pages }: TPage[]) {
       <Image src="/wyw_logo.svg" width={150} height={200} alt="logo" />
       <div className="w-1/3 flex">
         <ul className="w-2/3 flex items-center">
-          <li className="hidden px-2 md:flex">Favorites</li>
+          {isAuth === true ? (
+            <Link href="/favorites" className="hidden px-2 md:flex">
+              Favorites
+            </Link>
+          ) : (
+            ""
+          )}
           <li className="hidden px-2 md:flex">Admin</li>
         </ul>
         <div className="w-1/3 grid place-items-center border-2 m-4 border-primary_font">
