@@ -51,7 +51,6 @@ export default function Signup() {
   };
 
   return (
-
     <div className="flex justify-center items-center align-middle flex-col text-primary_font min-h-[calc(100vh-64px)] flex-grow w-screen">
       <div>
         <h1 className="flex justify-center py-5 text-xl">

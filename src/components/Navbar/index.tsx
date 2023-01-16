@@ -36,7 +36,7 @@ export default function Navbar({ pages }: TPage[]) {
       <Menuburger pages={pages} className="sm:invisible" />
 
       <ul className="w-1/3 invisible flex items-center px-2 md:visible">
-        {pages.filter((page: TPage) => page.title !== "Homepage").length > 0 ? (
+        {pages.filter((page: TPage) => page.title === "Homepage").length > 0 ? (
           <Link
             href={`/pages/${
               pages.filter((page: TPage) => page.title === "Homepage")[0].id
