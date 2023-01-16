@@ -9,6 +9,13 @@ const getOneVideo = async (id: any) => {
 
 export default async function Page({ params }) {
   const video = await getOneVideo(params.id);
+  const changeDate = (dateISO) => {
+    const date = new Date(dateISO);
+    const jour = date.getDay();
+    const mois = date.getMonth();
+    const annee = date.getFullYear();
+    return `${jour + 1}-${mois + 1}-${annee}`;
+  };
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-64px)]">
@@ -45,7 +52,7 @@ export default async function Page({ params }) {
             {video.description}{" "}
           </div>
           <div className="py-2">
-            INFORMATIONS - published on {video.updatedAt}
+            INFORMATIONS - published on {changeDate(video.updatedAt)}
           </div>
         </div>
         <div className="w-1/2 p-4">
