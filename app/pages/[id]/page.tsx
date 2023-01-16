@@ -2,6 +2,11 @@ import Ad from "../../../src/components/Sections/Ad";
 import CarouselStatic from "../../../src/components/Sections/CarouselStatic";
 import Grid from "../../../src/components/Sections/Grid";
 import HeroSlider from "../../../src/components/Sections/HeroSlider";
+import {
+  TSectionDynamic,
+  TPageSectionStatic,
+  TPage,
+} from "../../../src/types/apiTypes";
 
 const getMultipleRandom = (arr, num) => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
@@ -32,7 +37,12 @@ export default async function Page({ params }) {
   const sections = extractSections(page);
 
   return (
-    <div className="top-20 bg-primary_bg text-primary_font  w-screen">
+    <div className=" bg-primary_bg text-primary_font w-screen min-h-[calc(100vh-64px)]">
+      {page.title !== "Homepage" ? (
+        <div className="bg-primary_bg h-20"> </div>
+      ) : (
+        ""
+      )}
       {sections.map((section) => {
         if (section.advertisingId) return <Ad section={section} />;
         if (section.sectionsStatics) {

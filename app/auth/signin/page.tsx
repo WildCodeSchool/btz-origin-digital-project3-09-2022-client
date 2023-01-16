@@ -18,7 +18,8 @@ export default function Signin() {
     });
   };
   return (
-    <div className="flex justify-center items-center align-middle flex-col text-primary_font h-full  flex-grow w-screen">
+    <div className="flex justify-center items-center align-middle flex-col text-primary_font flex-grow w-screen min-h-[calc(100vh-64px)]">
+      <div className="bg-primary_bg h-20"> </div>
       <div>
         <h1 className="flex justify-center py-5 text-2xl">Login</h1>
       </div>

@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Carousel from "react-multi-carousel";
+import { useAuth } from "../../context/UserContext";
 import "react-multi-carousel/lib/styles.css";
+import { Tvideo } from "../../types/apiTypes";
 
 const responsive = {
   superLargeDesktop: {
@@ -25,29 +28,47 @@ const responsive = {
 };
 
 interface IProps {
-  videos: any;
+  videos: Tvideo[];
   title: string;
 }
 
 export default function CarouselStatic({ videos, title }: IProps) {
+  const { isAuth } = useAuth();
+
   return (
-    <div className="flex flex-col">
-      <p>{title}</p>
+    <div className="flex flex-col p-3">
+      <p className="text-2xl p-3">{title}</p>
       <Carousel ssr={false} responsive={responsive}>
-        {videos.map((video) => (
-          <div className="relative">
-            <Link
-              className="absolute px-2 text-lg m-5 z-50"
-              key={video.id}
-              href={`/videos/${video.id}`}
-            >
-              {video.title}
-            </Link>
-            <video className="p-3" key={video.id} src={video.videoUrl} controls>
-              <track kind="captions" />
-            </video>
-          </div>
-        ))}
+        {videos
+          .filter((video) => video.display === true)
+          .map((video) => (
+            <div key={video.id} className="relative p-2">
+              <video className="w-full h-full z-10" src={video.videoUrl}>
+                <track kind="captions" />
+              </video>
+
+              {isAuth === false && video.isPublic === false ? (
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+                  <Image
+                    src="/lock_logo.svg"
+                    alt="logo share"
+                    width="80"
+                    height="80"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+
+              <div className="absolute bottom-0 left-0 right-0 bg-gray-700 bg-opacity-25 m-2 px-2">
+                {isAuth === false && video.isPublic === false ? (
+                  <span>{video.title}</span>
+                ) : (
+                  <Link href={`/videos/${video.id}`}>{video.title}</Link>
+                )}
+              </div>
+            </div>
+          ))}
       </Carousel>
     </div>
   );
