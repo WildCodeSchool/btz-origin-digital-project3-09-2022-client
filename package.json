@@ -17,6 +17,9 @@
     "react-dom": "18.2.0",
     "react-multi-carousel": "^2.8.2",
     "react-player": "^2.11.0",
+    "react-toastify": "^9.1.1",
+    "toast": "^0.5.4",
+    "toaster": "^0.1.2",
     "zod": "^3.20.2"
   },
   "devDependencies": {

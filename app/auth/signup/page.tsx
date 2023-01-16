@@ -134,7 +134,7 @@ export default function Signup() {
           />
         </div>
       </form>
-      <div>
+      <div className="py-5">
         <button
           className="text-primary_font bg-footer px-5 py-1 rounded-lg "
           type="submit"
