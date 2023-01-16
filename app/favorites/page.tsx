@@ -1,26 +1,30 @@
-// import { useAuth } from "../../src/context/UserContext";
+import { cookies } from "next/headers"; // Import cookies
+import Grid from "../../src/components/Sections/Grid";
+import { Tvideo } from "../../src/types/apiTypes";
 
-const getUser = async (id: any) => {
+const getFavoriteVideos = async () => {
+  const token = cookies().get("token");
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/${id}` || "apiurl"
+    `${process.env.API_URL}/videos?favorite=true` || "apiurl",
+    {
+      credentials: "include",
+      headers: {
+        Authorization: token?.value as string,
+      },
+    }
   );
   const pageJson = await res.json();
-
-  return pageJson;
+  return pageJson as Tvideo[];
 };
 
 export default async function Favorites() {
-  //   User forced to test
-  const user = await getUser("de03c1e1-57c6-4e9e-a0b6-ea9c295b8c4b");
+  const videos = await getFavoriteVideos();
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-64px)]">
       <div className="bg-primary_bg h-20"> </div>
       <div className="text-primary_font flex">
-        FAVORITES
-        {user.favorites_videos.map((video) => (
-          <p>{video.title}</p>
-        ))}
+        <Grid videos={videos} title="Favorites" />
       </div>
     </div>
   );

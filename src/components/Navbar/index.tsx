@@ -11,6 +11,7 @@ import { TPage } from "../../types/apiTypes";
 
 export default function Navbar({ pages }: TPage[]) {
   // change nav color on scrolling
+
   const { isAuth } = useAuth();
   const [color, setColor] = useState(false);
   const changeColor = () => {

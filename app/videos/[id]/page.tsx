@@ -1,7 +1,9 @@
 import Image from "next/image";
 
 const getOneVideo = async (id: any) => {
-  const res = await fetch(`${process.env.API_URL}/videos/${id}` || "apiurl");
+  const res = await fetch(`${process.env.API_URL}/videos/${id}` || "apiurl", {
+    credentials: "include",
+  });
   const videoJson = await res.json();
 
   return videoJson;

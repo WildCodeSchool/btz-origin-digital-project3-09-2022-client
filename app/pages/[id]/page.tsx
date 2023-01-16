@@ -14,7 +14,9 @@ const getMultipleRandom = (arr, num) => {
 };
 
 const getOnePage = async (id: any) => {
-  const res = await fetch(`${process.env.API_URL}/pages/${id}` || "apiurl");
+  const res = await fetch(`${process.env.API_URL}/pages/${id}` || "apiurl", {
+    credentials: "include",
+  });
   const pageJson = await res.json();
 
   return pageJson;
