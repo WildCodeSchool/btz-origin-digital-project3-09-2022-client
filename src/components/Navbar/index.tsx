@@ -73,7 +73,7 @@ export default function Navbar({ pages }: TPage[]) {
         </ul>
         <div className="w-1/3 grid place-items-center border-2 m-4 border-primary_font">
           <Link className="text-sm md:text-lg" href="/auth/signin">
-            LOG IN
+            {isAuth === true ? "LOG OUT" : "LOG IN"}
           </Link>
         </div>
       </div>
