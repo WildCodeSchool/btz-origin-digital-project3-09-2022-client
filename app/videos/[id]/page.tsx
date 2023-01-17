@@ -59,21 +59,32 @@ export default async function Page({ params }) {
             INFORMATIONS - published on {changeDate(video.updatedAt)}
           </div>
         </div>
-        <div className="w-1/2 p-4">
-          {token || video.isPublic ? (
+        {token || video.isPublic ? (
+          <div className="relative w-1/2 p-4">
             <video key={video.id} src={video.videoUrl} controls>
               {" "}
               <track kind="captions" />
             </video>
-          ) : (
+          </div>
+        ) : (
+          <div className="relative w-1/2 p-4">
             <Image
+              className="absolute inset-0 flex flex-col w-full"
               src={video.thumbnailUrl}
-              alt="lock"
+              alt="thumbnail"
               width="200"
               height="200"
             />
-          )}
-        </div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+              <Image
+                src="/lock_logo.svg"
+                alt="logo share"
+                width="80"
+                height="80"
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

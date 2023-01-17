@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../../context/UserContext";
 import { Tvideo } from "../../types/apiTypes";
+import Thumbnail from "./Thumbnail";
 
 interface IProps {
   videos: Tvideo[];
@@ -21,9 +22,7 @@ export default function Grid({ videos, title }: IProps) {
           .filter((video: Tvideo) => video.display === true)
           .map((video: Tvideo) => (
             <div key={video.id} className="relative">
-              <video className="w-full h-full z-10 " src={video.videoUrl}>
-                <track kind="captions" />
-              </video>
+              <Thumbnail video={video} />
 
               {isAuth === false && video.isPublic === false ? (
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
@@ -37,12 +36,9 @@ export default function Grid({ videos, title }: IProps) {
               ) : (
                 ""
               )}
-              <div className="absolute bottom-0 left-0 right-0 p-2  bg-gray-700 bg-opacity-25">
-                {isAuth === false && video.isPublic === false ? (
-                  <p>{video.title}</p>
-                ) : (
-                  <Link href={`/videos/${video.id}`}>{video.title}</Link>
-                )}
+
+              <div className="absolute bottom-0 left-0 right-0 bg-gray-700 bg-opacity-25 m-2 px-2">
+                <Link href={`/videos/${video.id}`}>{video.title}</Link>
               </div>
             </div>
           ))}
