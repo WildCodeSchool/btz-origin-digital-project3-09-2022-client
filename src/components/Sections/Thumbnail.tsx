@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { useAuth } from "../../context/UserContext";
 import { Tvideo } from "../../types/apiTypes";
 
 interface IProps {
@@ -10,7 +9,6 @@ interface IProps {
 }
 
 export default function Thumbnail({ video }: IProps) {
-  const { isAuth } = useAuth();
   const [teaser, setTeaser] = useState(false);
 
   return (

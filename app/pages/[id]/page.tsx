@@ -3,11 +3,6 @@ import Ad from "../../../src/components/Sections/Ad";
 import CarouselStatic from "../../../src/components/Sections/CarouselStatic";
 import Grid from "../../../src/components/Sections/Grid";
 import HeroSlider from "../../../src/components/Sections/HeroSlider";
-import {
-  TSectionDynamic,
-  TPageSectionStatic,
-  TPage,
-} from "../../../src/types/apiTypes";
 
 const getMultipleRandom = (arr: any[], num: number) => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());

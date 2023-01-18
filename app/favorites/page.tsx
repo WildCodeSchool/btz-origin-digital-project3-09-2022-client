@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { cookies } from "next/headers"; // Import cookies
-import { useRouter } from "next/navigation";
 import Grid from "../../src/components/Sections/Grid";
 import { Tvideo } from "../../src/types/apiTypes";
 
