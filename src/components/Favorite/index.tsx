@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAuth } from "../../context/UserContext";
+import axiosInstance from "../../utils/axiosInstance";
 
 interface IProps {
   id: string;
@@ -11,49 +15,39 @@ interface IProps {
 export default function Favorite({ id }: IProps) {
   const { user } = useAuth();
   const [favorite, setFavorite] = useState(false);
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const isVideoFavorite = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/favorites/isFavorite/${user.id}/${id}` ||
-        "apiurl",
-      {
-        credentials: "include",
-      }
-    );
-    const isFavorite = await res.json();
-    return isFavorite;
+    const { data } = await axiosInstance.get(`/favorites/${id}/isFavorite`);
+
+    return data;
   };
 
   const addVideoFavorite = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/favorites/add/${user?.id}/${id}/` ||
-        "apiurl",
-      {
-        credentials: "include",
-        body: JSON.stringify({
-          userId: user?.id,
-          videoId: id,
-        }),
-        method: "POST",
-      }
+    const { data } = await axiosInstance.post(
+      `/favorites/add`,
+      JSON.parse(JSON.stringify({ videoId: id }))
     );
-    return res.json();
+
+    startTransition(() => {
+      router.refresh();
+    });
+
+    return data;
   };
 
   const removeVideoFavorite = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/favorites/remove/${user.id}/${id}/` ||
-        "apiurl",
-      {
-        credentials: "include",
-        body: JSON.stringify({
-          userId: user.id,
-          videoId: id,
-        }),
-        method: "POST",
-      }
+    const { data } = await axiosInstance.post(
+      `/favorites/remove`,
+      JSON.parse(JSON.stringify({ videoId: id }))
     );
-    return res.json();
+
+    startTransition(() => {
+      router.refresh();
+    });
+
+    return data;
   };
 
   useEffect(() => {

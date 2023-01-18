@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
 import { cookies } from "next/headers"; // Import cookies
 import Favorite from "../../../src/components/Favorite";
@@ -11,7 +12,7 @@ const getOneVideo = async (id: any) => {
   return videoJson;
 };
 
-export default async function VideoDetails({ params }) {
+export default async function VideoDetails({ params }: any) {
   const video = await getOneVideo(params.id);
 
   const token = cookies().get("token");
@@ -25,7 +26,7 @@ export default async function VideoDetails({ params }) {
       <div className="bg-primary_bg h-20"> </div>
       <div className="text-primary_font flex">
         <div className="flex flex-col w-1/2 p-4">
-          {!video.isPublic ? (
+          {video.isPublic === false ? (
             <div className="text-xl pb-3 border-b border-primary_font flex items-center ">
               <Image
                 src="/lock_full_logo.svg"

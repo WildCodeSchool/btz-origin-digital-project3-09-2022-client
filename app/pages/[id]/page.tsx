@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Ad from "../../../src/components/Sections/Ad";
 import CarouselStatic from "../../../src/components/Sections/CarouselStatic";
 import Grid from "../../../src/components/Sections/Grid";
@@ -8,12 +9,12 @@ import {
   TPage,
 } from "../../../src/types/apiTypes";
 
-const getMultipleRandom = (arr, num) => {
+const getMultipleRandom = (arr: any[], num: number) => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, num);
 };
 
-const getOnePage = async (id: any) => {
+const getOnePage = async (id: string) => {
   const res = await fetch(`${process.env.API_URL}/pages/${id}` || "apiurl", {
     credentials: "include",
   });
@@ -22,19 +23,19 @@ const getOnePage = async (id: any) => {
   return pageJson;
 };
 
-const extractSections = (page) => {
-  const sections = [];
+const extractSections = (page: any) => {
+  const sections = [] as any[];
 
-  page.pagesAdvertisings.map((section) => sections.push(section));
-  page.pagesSectionsDynamic.map((section) => sections.push(section));
-  page.pagesSectionsStatic.map((section) => sections.push(section));
+  page.pagesAdvertisings.map((section: any) => sections.push(section));
+  page.pagesSectionsDynamic.map((section: any) => sections.push(section));
+  page.pagesSectionsStatic.map((section: any) => sections.push(section));
 
   sections.sort((a, b) => a.position - b.position);
 
   return sections;
 };
 
-export default async function Page({ params }) {
+export default async function Page({ params }: any) {
   const page = await getOnePage(params.id);
   const sections = extractSections(page);
 
@@ -52,7 +53,7 @@ export default async function Page({ params }) {
             return (
               <HeroSlider
                 videos={section.sectionsStatics.videos}
-                title={section.sectionsStatics.title}
+                // title={section.sectionsStatics.title}
               />
             );
 

@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { cookies } from "next/headers"; // Import cookies
+import { useRouter } from "next/navigation";
 import Grid from "../../src/components/Sections/Grid";
 import { Tvideo } from "../../src/types/apiTypes";
 
@@ -6,6 +8,10 @@ const getFavoriteVideos = async () => {
   const token = cookies().get("token");
   const res = await fetch(`${process.env.API_URL}/favorites` || "apiurl", {
     credentials: "include",
+    cache: "no-store",
+    next: {
+      revalidate: 0,
+    },
     headers: {
       Authorization: token?.value as string,
     },
