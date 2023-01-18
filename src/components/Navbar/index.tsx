@@ -3,7 +3,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useAuth } from "../../context/UserContext";
 import Menuburger from "../Menuburger";
@@ -11,8 +11,9 @@ import { TPage } from "../../types/apiTypes";
 
 export default function Navbar({ pages }: TPage[]) {
   // change nav color on scrolling
-  const { isAuth } = useAuth();
+  const { isAuth, signOut } = useAuth();
   const [color, setColor] = useState(false);
+
   const changeColor = () => {
     if (window.scrollY >= 80) {
       setColor(true);
@@ -21,9 +22,13 @@ export default function Navbar({ pages }: TPage[]) {
     }
   };
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", changeColor);
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", changeColor);
+    }
+  }, []);
+
+  console.log(isAuth);
 
   return (
     <nav
@@ -71,9 +76,19 @@ export default function Navbar({ pages }: TPage[]) {
           <li className="hidden px-2 md:flex">Admin</li>
         </ul>
         <div className="w-1/3 grid place-items-center border-2 m-4 border-primary_font">
-          <Link className="text-sm md:text-lg" href="/auth/signin">
-            LOG IN
-          </Link>
+          {isAuth ? (
+            <button
+              onClick={signOut}
+              type="button"
+              className="text-sm md:text-lg"
+            >
+              LOG OUT
+            </button>
+          ) : (
+            <Link className="text-sm md:text-lg" href="/auth/signin">
+              LOG IN
+            </Link>
+          )}
         </div>
       </div>
     </nav>
