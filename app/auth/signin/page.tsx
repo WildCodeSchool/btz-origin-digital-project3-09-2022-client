@@ -18,10 +18,12 @@ export default function Signin() {
     });
   };
   return (
-    <div className="flex justify-center items-center align-middle flex-col text-primary_font flex-grow w-screen min-h-[calc(100vh-64px)]">
+    <div className="flex justify-center items-center align-middle flex-col text-black flex-grow w-screen min-h-[calc(100vh-64px)]">
       <div className="bg-primary_bg h-20"> </div>
       <div>
-        <h1 className="flex justify-center py-5 text-2xl">Login</h1>
+        <h1 className="flex justify-center text-primary_font py-5 text-2xl">
+          Login
+        </h1>
       </div>
       <form className="flex space-y-5 flex-col justify-center">
         <div>
@@ -49,7 +51,7 @@ export default function Signin() {
             onChange={handleChange}
             required
           />
-          <h6 className="flex justify-center text-xs">
+          <h6 className="flex justify-center text-primary_font text-xs">
             Need an account ?
             <ul>
               <li>
