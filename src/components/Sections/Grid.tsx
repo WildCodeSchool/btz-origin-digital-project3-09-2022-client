@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/UserContext";
 import { Tvideo } from "../../types/apiTypes";
 import Thumbnail from "./Thumbnail";
@@ -15,11 +13,6 @@ interface IProps {
 
 export default function Grid({ videos, title }: IProps) {
   const { isAuth } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    router.refresh();
-  }, []);
 
   return (
     <div className="flex flex-col p-3">

@@ -16,6 +16,7 @@ const getAllPages = async () => {
     headers: {
       Authorization: token?.value as string,
     },
+    // cache: "no-store",
   });
   const pagesJson = await pages.json();
 

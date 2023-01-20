@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 "use client";
@@ -7,7 +8,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { TPage } from "../../types/apiTypes";
 
-export default function Menuburger({ pages }: TPage[]) {
+interface IProps {
+  pages: TPage[];
+}
+
+export default function Menuburger({ pages }: IProps) {
   const [isOpen, setOpen] = useState(false);
 
   const handleIsOpen = () => {
@@ -31,7 +36,7 @@ export default function Menuburger({ pages }: TPage[]) {
         <Link
           onClick={closeSideBar}
           href={`/pages/${
-            pages.filter((page: TPage) => page.title === "Homepage")[0].id
+            pages.filter((page: TPage) => page!.title === "Homepage")[0]!.id
           }`}
         >
           Homepage

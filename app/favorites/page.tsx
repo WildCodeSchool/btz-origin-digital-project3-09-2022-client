@@ -8,9 +8,6 @@ const getFavoriteVideos = async () => {
   const res = await fetch(`${process.env.API_URL}/favorites` || "apiurl", {
     credentials: "include",
     cache: "no-store",
-    next: {
-      revalidate: 0,
-    },
     headers: {
       Authorization: token?.value as string,
     },
