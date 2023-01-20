@@ -4,6 +4,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useAuth } from "../../context/UserContext";
@@ -19,6 +20,8 @@ export default function Navbar({ pages }: IProps) {
   const { isAuth, signOut } = useAuth();
   const [color, setColor] = useState(false);
 
+  const router = useRouter();
+
   const changeColor = () => {
     if (window.scrollY >= 80) {
       setColor(true);
@@ -33,8 +36,6 @@ export default function Navbar({ pages }: IProps) {
     }
   }, []);
 
-  console.log(isAuth);
-
   return (
     <nav
       className={
@@ -45,7 +46,7 @@ export default function Navbar({ pages }: IProps) {
     >
       {/* Check if one of the pages fetched as a title Homepage. If yes, it will appear as the first link using the "Home" icon */}
 
-      <Menuburger pages={pages} className="sm:invisible" />
+      <Menuburger pages={pages} />
 
       <ul className="w-1/3 invisible flex items-center px-2 md:visible">
         {pages.filter((page: TPage) => page.title !== "Homepage").length > 0 ? (
@@ -72,9 +73,16 @@ export default function Navbar({ pages }: IProps) {
       <div className="w-1/3 flex">
         <ul className="w-2/3 flex items-center">
           {isAuth === true ? (
-            <Link href="/favorites" className="hidden px-2 md:flex">
-              Favorites
-            </Link>
+            <>
+              {" "}
+              <button
+                type="button"
+                onClick={() => router.push("/favorites")}
+                className="hidden px-2 md:flex"
+              >
+                Favorites
+              </button>
+            </>
           ) : (
             ""
           )}

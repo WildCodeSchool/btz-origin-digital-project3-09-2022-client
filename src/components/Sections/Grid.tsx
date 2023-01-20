@@ -15,11 +15,11 @@ interface IProps {
 
 export default function Grid({ videos, title }: IProps) {
   const { isAuth } = useAuth();
-  const router = useRouter();
+  // const router = useRouter();
 
-  useEffect(() => {
-    router.refresh();
-  }, []);
+  // useEffect(() => {
+  //   router.refresh();
+  // }, []);
 
   return (
     <div className="flex flex-col p-3">

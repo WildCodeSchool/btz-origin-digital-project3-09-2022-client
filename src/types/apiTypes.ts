@@ -112,6 +112,6 @@ export type TCredentials = {
 };
 
 export type AuthState = {
-  user: TUser | null;
+  user: TUserWithoutPassword | null;
   isAuth: boolean;
 };
