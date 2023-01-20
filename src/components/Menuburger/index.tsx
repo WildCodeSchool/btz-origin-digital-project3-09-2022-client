@@ -8,10 +8,6 @@ import { useState } from "react";
 import { TPage } from "../../types/apiTypes";
 
 export default function Menuburger({ pages }: TPage[]) {
-  const showSettings = (event) => {
-    event.preventDefault();
-  };
-
   const [isOpen, setOpen] = useState(false);
 
   const handleIsOpen = () => {

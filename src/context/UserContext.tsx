@@ -34,7 +34,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
 
   const signIn = async ({ email, password }: TCredentials) => {
     try {
-      const { data, headers } = await axiosInstance.post("auth/signin", {
+      const { data } = await axiosInstance.post("auth/signin", {
         email,
         password,
       });
@@ -43,10 +43,6 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         user: data,
       }));
 
-      const token = headers["authorization"];
-
-      axiosInstance.defaults.headers.common["authorization"] = token;
-      localStorage.setItem("token", token || "");
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -57,8 +53,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
       isAuth: false,
       user: null,
     }));
-    localStorage.removeItem("token");
-    axiosInstance.defaults.headers.common["authorization"] = "";
+
     router.push("/auth/signin");
   };
 

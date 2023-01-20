@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 "use client";
@@ -9,7 +10,11 @@ import { useAuth } from "../../context/UserContext";
 import Menuburger from "../Menuburger";
 import { TPage } from "../../types/apiTypes";
 
-export default function Navbar({ pages }: TPage[]) {
+interface IProps {
+  pages: TPage[];
+}
+
+export default function Navbar({ pages }: IProps) {
   // change nav color on scrolling
   const { isAuth, signOut } = useAuth();
   const [color, setColor] = useState(false);
@@ -46,7 +51,7 @@ export default function Navbar({ pages }: TPage[]) {
         {pages.filter((page: TPage) => page.title !== "Homepage").length > 0 ? (
           <Link
             href={`/pages/${
-              pages.filter((page: TPage) => page.title === "Homepage")[0].id
+              pages.filter((page: TPage) => page.title === "Homepage")[0]!.id
             }`}
           >
             <Image src="/home_logo.svg" width={15} height={15} alt="logo WYW" />

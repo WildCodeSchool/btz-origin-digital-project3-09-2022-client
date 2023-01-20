@@ -20,19 +20,6 @@ export type TCategory = {
   updatedAt: Date;
 };
 
-export type TUser = {
-  id: string;
-  firstname: string;
-  lastname: string;
-  username: string;
-  email: string;
-  password: string;
-  imageUrl: string;
-  createdAt: Date;
-  updatedAt: Date;
-  role: string;
-};
-
 export type TNewUser = {
   firstname: string;
   lastname: string;
@@ -52,6 +39,7 @@ export type TUserWithoutPassword = {
   createdAt: Date;
   updatedAt: Date;
   role: string;
+  favorites_videos?: Tvideo[];
 };
 
 export type TTag = {
