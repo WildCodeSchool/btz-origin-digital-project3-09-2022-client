@@ -23,7 +23,7 @@ export default async function Favorites() {
     <div className="flex flex-col min-h-[calc(100vh-64px)]">
       <div className="bg-primary_bg h-20"> </div>
       <div className="text-primary_font flex">
-        <Grid videos={videos} title="Favorites" />
+        <Grid videos={videos} displayFavorite title="Favorites" />
       </div>
     </div>
   );

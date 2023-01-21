@@ -28,10 +28,15 @@ const responsive = {
 
 interface IProps {
   videos: Tvideo[];
+  displayFavorite: boolean;
   title: string;
 }
 
-export default function CarouselStatic({ videos, title }: IProps) {
+export default function CarouselStatic({
+  videos,
+  displayFavorite,
+  title,
+}: IProps) {
   return (
     <div className="flex flex-col p-3">
       <p className="text-2xl p-3">{title}</p>
@@ -39,9 +44,9 @@ export default function CarouselStatic({ videos, title }: IProps) {
         {videos
           .filter((video) => video.display === true)
           .map((video) => (
-            <div key={video.id} className="relative p-2">
+            <div key={video.id} className="relative m-2">
               <Thumbnail video={video} />
-              <VideoCard video={video} />
+              <VideoCard video={video} displayFavorite={displayFavorite} />
             </div>
           ))}
       </Carousel>
