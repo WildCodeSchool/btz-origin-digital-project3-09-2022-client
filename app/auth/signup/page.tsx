@@ -34,7 +34,7 @@ export default function Signup() {
   }: TNewUser) => {
     try {
       if (password === confirmPassword) {
-        const { data, headers } = await axiosInstance.post("auth/signup", {
+        await axiosInstance.post("auth/signup", {
           email,
           firstname,
           lastname,
@@ -46,7 +46,7 @@ export default function Signup() {
         alert("Confirm Password is not the same as password");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
