@@ -44,7 +44,7 @@ export default function CarouselStatic({
         {videos
           .filter((video) => video.display === true)
           .map((video) => (
-            <div key={video.id} className="relative m-2">
+            <div key={video.id} className="relative m-2 shadow-2xl">
               <Thumbnail video={video} />
               <VideoCard video={video} displayFavorite={displayFavorite} />
             </div>
