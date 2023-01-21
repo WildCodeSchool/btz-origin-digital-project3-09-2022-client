@@ -104,6 +104,7 @@ export type TPageAdvertising = {
   position: number;
   createdAt: Date;
   updatedAt: Date;
+  advertisings: TAdvertising;
 };
 
 export type TCredentials = {

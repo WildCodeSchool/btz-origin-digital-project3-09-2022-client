@@ -1,7 +1,9 @@
 "use client";
 
+import { TPageAdvertising } from "../../types/apiTypes";
+
 interface IProps {
-  section: any;
+  section: TPageAdvertising;
 }
 
 export default function Ad({ section }: IProps) {

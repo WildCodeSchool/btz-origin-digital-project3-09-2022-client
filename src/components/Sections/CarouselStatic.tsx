@@ -1,9 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import Carousel from "react-multi-carousel";
-import { useAuth } from "../../context/UserContext";
 import "react-multi-carousel/lib/styles.css";
 import { Tvideo } from "../../types/apiTypes";
 import Thumbnail from "./Thumbnail";
