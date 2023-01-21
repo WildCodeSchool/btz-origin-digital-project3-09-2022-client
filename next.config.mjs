@@ -16,9 +16,10 @@ const config = {
   },
   reactStrictMode: true,
   swcMinify: true,
+  trailingSlash: true,
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ["fr"],
+    defaultLocale: "fr",
   },
   images: {
     remotePatterns: [
@@ -27,6 +28,17 @@ const config = {
         hostname: "**",
       },
     ],
+  },
+  redirects: async () => {
+    return [
+      {
+        source: "/",
+        destination: process.env.HOMEPAGE_ID
+          ? `/pages/${process.env.HOMEPAGE_ID}/`
+          : "/fr",
+        permanent: false,
+      },
+    ];
   },
 };
 
