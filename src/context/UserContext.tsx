@@ -49,12 +49,12 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
     }
   };
   const signOut = async () => {
+    await axiosInstance.post("auth/signout");
     setAuthState(() => ({
       isAuth: false,
       user: null,
     }));
-
-    router.push("/auth/signin");
+    router.push("/");
   };
 
   return (

@@ -5,7 +5,6 @@
 
 import { slide as Menu } from "react-burger-menu";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { useState } from "react";
 import { TPage } from "../../types/apiTypes";
 
