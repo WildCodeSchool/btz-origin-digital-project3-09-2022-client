@@ -54,6 +54,7 @@ export default async function Page({ params }: any) {
 
           return (
             <CarouselStatic
+              displayFavorite={false}
               videos={section.sectionsStatics.videos}
               title={section.sectionsStatics.title}
             />
@@ -63,6 +64,7 @@ export default async function Page({ params }: any) {
           if (section.sectionsDynamic.isGrid)
             return (
               <Grid
+                displayFavorite={false}
                 videos={getMultipleRandom(
                   section.sectionsDynamic.categories.videos,
                   section.sectionsDynamic.max
@@ -73,6 +75,7 @@ export default async function Page({ params }: any) {
 
           return (
             <CarouselStatic
+              displayFavorite={false}
               videos={getMultipleRandom(
                 section.sectionsDynamic.categories.videos,
                 section.sectionsDynamic.max

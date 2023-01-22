@@ -50,13 +50,20 @@ export default function Navbar({ pages }: IProps) {
 
       <ul className="w-1/3 invisible flex items-center px-2 md:visible">
         {pages.filter((page: TPage) => page.title !== "Homepage").length > 0 ? (
-          <Link
-            href={`/pages/${
-              pages.filter((page: TPage) => page.title === "Homepage")[0]!.id
-            }`}
+          <button
+            type="button"
+            onClick={() =>
+              router.push(
+                `/pages/${
+                  pages.filter((page: TPage) => page.title === "Homepage")[0]!
+                    .id
+                }`
+              )
+            }
+            className="px-2"
           >
             <Image src="/home_logo.svg" width={15} height={15} alt="logo WYW" />
-          </Link>
+          </button>
         ) : (
           ""
         )}
@@ -64,9 +71,13 @@ export default function Navbar({ pages }: IProps) {
         {pages
           .filter((page: TPage) => page.title !== "Homepage")
           .map((page: TPage) => (
-            <Link className="px-2" key={page.id} href={`/pages/${page.id}`}>
+            <button
+              type="button"
+              onClick={() => router.push(`/pages/${page.id}`)}
+              className="px-2"
+            >
               {page.title}
-            </Link>
+            </button>
           ))}
       </ul>
       <Image src="/wyw_logo.svg" width={150} height={200} alt="logo" />

@@ -4,7 +4,7 @@
 "use client";
 
 import { slide as Menu } from "react-burger-menu";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { TPage } from "../../types/apiTypes";
 
@@ -14,6 +14,7 @@ interface IProps {
 
 export default function Menuburger({ pages }: IProps) {
   const [isOpen, setOpen] = useState(false);
+  const router = useRouter();
 
   const handleIsOpen = () => {
     setOpen(!isOpen);
@@ -33,14 +34,28 @@ export default function Menuburger({ pages }: IProps) {
       onClose={handleIsOpen}
     >
       {pages.filter((page: TPage) => page.title !== "Homepage").length > 0 ? (
-        <Link
-          onClick={closeSideBar}
-          href={`/pages/${
-            pages.filter((page: TPage) => page!.title === "Homepage")[0]!.id
-          }`}
+        // <Link
+        //   onClick={closeSideBar}
+        //   href={`/pages/${
+        //     pages.filter((page: TPage) => page!.title === "Homepage")[0]!.id
+        //   }`}
+        // >
+        //   Homepage
+        // </Link>
+        <button
+          type="button"
+          onClick={() => {
+            router.push(
+              `/pages/${
+                pages.filter((page: TPage) => page.title === "Homepage")[0]!.id
+              }`
+            );
+            closeSideBar();
+          }}
+          className="px-2"
         >
           Homepage
-        </Link>
+        </button>
       ) : (
         ""
       )}
@@ -48,14 +63,16 @@ export default function Menuburger({ pages }: IProps) {
       {pages
         .filter((page: TPage) => page.title !== "Homepage")
         .map((page: TPage) => (
-          <Link
-            onClick={closeSideBar}
+          <button
             className="px-2"
-            key={page.id}
-            href={`/pages/${page.id}`}
+            type="button"
+            onClick={() => {
+              router.push(`/pages/${page.id}`);
+              closeSideBar();
+            }}
           >
             {page.title}
-          </Link>
+          </button>
         ))}
     </Menu>
   );

@@ -1,12 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import Carousel from "react-multi-carousel";
-import { useAuth } from "../../context/UserContext";
 import "react-multi-carousel/lib/styles.css";
 import { Tvideo } from "../../types/apiTypes";
 import Thumbnail from "./Thumbnail";
+import VideoCard from "./VideoCard";
 
 const responsive = {
   superLargeDesktop: {
@@ -30,12 +28,15 @@ const responsive = {
 
 interface IProps {
   videos: Tvideo[];
+  displayFavorite: boolean;
   title: string;
 }
 
-export default function CarouselStatic({ videos, title }: IProps) {
-  const { isAuth } = useAuth();
-
+export default function CarouselStatic({
+  videos,
+  displayFavorite,
+  title,
+}: IProps) {
   return (
     <div className="flex flex-col p-3">
       <p className="text-2xl p-3">{title}</p>
@@ -43,25 +44,9 @@ export default function CarouselStatic({ videos, title }: IProps) {
         {videos
           .filter((video) => video.display === true)
           .map((video) => (
-            <div key={video.id} className="relative p-2">
+            <div key={video.id} className="relative m-2 shadow-2xl">
               <Thumbnail video={video} />
-
-              {isAuth === false && video.isPublic === false ? (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-                  <Image
-                    src="/lock_logo.svg"
-                    alt="logo share"
-                    width="80"
-                    height="80"
-                  />
-                </div>
-              ) : (
-                ""
-              )}
-
-              <div className="absolute bottom-0 left-0 right-0 bg-gray-700 bg-opacity-25 m-2 px-2">
-                <Link href={`/videos/${video.id}`}>{video.title}</Link>
-              </div>
+              <VideoCard video={video} displayFavorite={displayFavorite} />
             </div>
           ))}
       </Carousel>

@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAuth } from "../../context/UserContext";
@@ -16,7 +16,6 @@ export default function Favorite({ id }: IProps) {
   const { user } = useAuth();
   const [favorite, setFavorite] = useState(false);
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
 
   const isVideoFavorite = async () => {
     const { data } = await axiosInstance.get(`/favorites/${id}/isFavorite`);
@@ -30,9 +29,7 @@ export default function Favorite({ id }: IProps) {
       JSON.parse(JSON.stringify({ videoId: id }))
     );
 
-    startTransition(() => {
-      router.refresh();
-    });
+    setFavorite(true);
 
     return data;
   };
@@ -42,10 +39,8 @@ export default function Favorite({ id }: IProps) {
       `/favorites/remove`,
       JSON.parse(JSON.stringify({ videoId: id }))
     );
-
-    startTransition(() => {
-      router.refresh();
-    });
+    setFavorite(false);
+    router.refresh();
 
     return data;
   };
@@ -54,7 +49,7 @@ export default function Favorite({ id }: IProps) {
     if (user) {
       isVideoFavorite().then((res) => setFavorite(res));
     }
-  }, [favorite]);
+  }, []);
 
   return (
     <div>
@@ -67,7 +62,6 @@ export default function Favorite({ id }: IProps) {
           height="40"
           onClick={() => {
             removeVideoFavorite();
-            setFavorite(false);
           }}
         />
       ) : (
@@ -79,7 +73,6 @@ export default function Favorite({ id }: IProps) {
           height="40"
           onClick={() => {
             addVideoFavorite();
-            setFavorite(true);
           }}
         />
       )}
