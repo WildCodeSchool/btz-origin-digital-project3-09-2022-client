@@ -6,11 +6,17 @@ import VideoCard from "./VideoCard";
 
 interface IProps {
   videos: Tvideo[];
+  activeFavorite: boolean;
   displayFavorite: boolean;
   title: string;
 }
 
-export default function Grid({ videos, displayFavorite, title }: IProps) {
+export default function Grid({
+  videos,
+  activeFavorite,
+  displayFavorite,
+  title,
+}: IProps) {
   return (
     <div className="flex flex-col p-3">
       <p className="text-2xl p-3">{title}</p>
@@ -20,7 +26,11 @@ export default function Grid({ videos, displayFavorite, title }: IProps) {
           .map((video: Tvideo) => (
             <div key={video.id} className="relative shadow-2xl">
               <Thumbnail video={video} />
-              <VideoCard video={video} displayFavorite={displayFavorite} />
+              <VideoCard
+                video={video}
+                activeFavorite={activeFavorite}
+                displayFavorite={displayFavorite}
+              />
             </div>
           ))}
       </div>

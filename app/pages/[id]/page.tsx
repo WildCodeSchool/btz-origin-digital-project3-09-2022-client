@@ -45,16 +45,12 @@ export default async function Page({ params }: any) {
         if (section.advertisingId) return <Ad section={section} />;
         if (section.sectionsStatics) {
           if (section.sectionsStatics.isHero)
-            return (
-              <HeroSlider
-                videos={section.sectionsStatics.videos}
-                // title={section.sectionsStatics.title}
-              />
-            );
+            return <HeroSlider videos={section.sectionsStatics.videos} />;
 
           return (
             <CarouselStatic
-              displayFavorite={false}
+              activeFavorite={false}
+              displayFavorite
               videos={section.sectionsStatics.videos}
               title={section.sectionsStatics.title}
             />
@@ -64,7 +60,8 @@ export default async function Page({ params }: any) {
           if (section.sectionsDynamic.isGrid)
             return (
               <Grid
-                displayFavorite={false}
+                activeFavorite={false}
+                displayFavorite
                 videos={getMultipleRandom(
                   section.sectionsDynamic.categories.videos,
                   section.sectionsDynamic.max
@@ -75,7 +72,8 @@ export default async function Page({ params }: any) {
 
           return (
             <CarouselStatic
-              displayFavorite={false}
+              activeFavorite={false}
+              displayFavorite
               videos={getMultipleRandom(
                 section.sectionsDynamic.categories.videos,
                 section.sectionsDynamic.max
