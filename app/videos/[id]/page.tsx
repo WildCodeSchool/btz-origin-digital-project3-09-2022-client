@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { cookies } from "next/headers"; // Import cookies
 import Favorite from "../../../src/components/Favorite";
+import ShareVideo from "../../../src/components/ShareVideo";
 
 const getOneVideo = async (id: any) => {
   const res = await fetch(`${process.env.API_URL}/videos/${id}` || "apiurl", {
@@ -43,12 +44,14 @@ export default async function VideoDetails({ params }: any) {
             {video.title}{" "}
             <div className="flex">
               {token ? <Favorite id={video.id} /> : ""}
-              <Image
+              <ShareVideo id={video.id} />
+
+              {/* <Image
                 src="/share_logo.svg"
                 alt="logo share"
                 width="40"
                 height="40"
-              />
+              /> */}
             </div>
           </div>
           <div className="py-2 border-b border-primary_font">
