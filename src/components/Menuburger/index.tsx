@@ -64,6 +64,7 @@ export default function Menuburger({ pages }: IProps) {
         .filter((page: TPage) => page.title !== "Homepage")
         .map((page: TPage) => (
           <button
+            key={page.id}
             className="px-2"
             type="button"
             onClick={() => {

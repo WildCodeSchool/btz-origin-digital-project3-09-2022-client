@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import CookiesConsent from "../../../src/components/CookiesConsent";
 import Ad from "../../../src/components/Sections/Ad";
 import CarouselStatic from "../../../src/components/Sections/CarouselStatic";
 import Grid from "../../../src/components/Sections/Grid";
@@ -41,6 +42,8 @@ export default async function Page({ params }: any) {
       ) : (
         ""
       )}
+      {page.title === "Homepage" ? <CookiesConsent /> : ""}
+
       {sections.map((section) => {
         if (section.advertisingId) return <Ad section={section} />;
         if (section.sectionsStatics) {
