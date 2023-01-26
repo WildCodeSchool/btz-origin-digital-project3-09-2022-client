@@ -17,6 +17,8 @@ interface IUserContext {
   isAuth: boolean;
   signIn: (credentials: TCredentials) => Promise<void>;
   signOut: () => Promise<void>;
+  cookiesConsent: boolean;
+  handleCookiesConsent: () => void;
 }
 
 const UserContext = createContext<IUserContext | null>(null);
@@ -31,6 +33,11 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
     user: null,
     isAuth: false,
   });
+  const [cookiesConsent, setcookiesConsent] = useState(false);
+
+  const handleCookiesConsent = () => {
+    setcookiesConsent(true);
+  };
 
   const signIn = async ({ email, password }: TCredentials) => {
     try {
@@ -64,6 +71,8 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         isAuth: authState.isAuth,
         signIn,
         signOut,
+        cookiesConsent,
+        handleCookiesConsent,
       }}
     >
       {children}

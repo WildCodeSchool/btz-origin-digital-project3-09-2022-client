@@ -72,6 +72,7 @@ export default function Navbar({ pages }: IProps) {
           .filter((page: TPage) => page.title !== "Homepage")
           .map((page: TPage) => (
             <button
+              key={page.id}
               type="button"
               onClick={() => router.push(`/pages/${page.id}`)}
               className="px-2"
