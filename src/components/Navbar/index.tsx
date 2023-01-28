@@ -49,7 +49,7 @@ export default function Navbar({ pages }: IProps) {
       <Menuburger pages={pages} />
 
       <ul className="w-1/3 invisible flex items-center px-2 md:visible">
-        {pages.filter((page: TPage) => page.title !== "Homepage").length > 0 ? (
+        {pages.filter((page: TPage) => page.title === "Homepage").length > 0 ? (
           <button
             type="button"
             onClick={() =>
