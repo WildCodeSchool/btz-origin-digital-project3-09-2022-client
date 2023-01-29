@@ -39,7 +39,7 @@ export default function VideoCard({
   return (
     <>
       {isAuth === false && video.isPublic === false ? (
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center z-50">
           <Image src="/lock_logo.svg" alt="logo share" width="80" height="80" />
         </div>
       ) : (
@@ -47,7 +47,12 @@ export default function VideoCard({
       )}
 
       <div className="absolute bottom-0 left-0 right-0 bg-gray-700 bg-opacity-25 px-2 flex justify-between items-center">
-        <Link href={`/videos/${video.id}`}>{video.title}</Link>
+        {isAuth || video.isPublic ? (
+          <Link href={`/videos/${video.id}`}>{video.title}</Link>
+        ) : (
+          <p>{video.title}</p>
+        )}
+
         {activeFavorite && isAuth ? <Favorite id={video.id} /> : ""}
         {displayFavorite && favorite && isAuth ? (
           <Image

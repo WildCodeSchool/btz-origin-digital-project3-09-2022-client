@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { Tvideo } from "../../types/apiTypes";
 
@@ -12,14 +13,16 @@ export default function Thumbnail({ video }: IProps) {
   const [teaser, setTeaser] = useState(false);
 
   return (
-    <Image
-      className="w-full h-full z-50"
-      src={teaser ? video.teaserUrl : video.thumbnailUrl}
-      alt="thumbnail"
-      width="80"
-      height="80"
-      onMouseEnter={() => setTeaser(true)}
-      onMouseLeave={() => setTeaser(false)}
-    />
+    <Link href={`/videos/${video.id}`}>
+      <Image
+        className="w-full h-full z-50"
+        src={teaser ? video.teaserUrl : video.thumbnailUrl}
+        alt="thumbnail"
+        width="80"
+        height="80"
+        onMouseEnter={() => setTeaser(true)}
+        onMouseLeave={() => setTeaser(false)}
+      />
+    </Link>
   );
 }

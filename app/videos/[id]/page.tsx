@@ -43,15 +43,8 @@ export default async function VideoDetails({ params }: any) {
           <div className="text-xl py-2 flex justify-between">
             {video.title}{" "}
             <div className="flex">
-              {token ? <Favorite id={video.id} /> : ""}
+              {token ? <Favorite id={video.id} /> : <p />}
               <ShareVideo id={video.id} />
-
-              {/* <Image
-                src="/share_logo.svg"
-                alt="logo share"
-                width="40"
-                height="40"
-              /> */}
             </div>
           </div>
           <div className="py-2 border-b border-primary_font">

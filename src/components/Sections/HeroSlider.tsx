@@ -5,10 +5,10 @@ import Carousel from "react-multi-carousel";
 import Image from "next/image";
 import { Tvideo } from "../../types/apiTypes";
 import "react-multi-carousel/lib/styles.css";
+import { useEffect, useState } from "react";
 
 const responsiveHero = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 2,
   },
@@ -37,7 +37,7 @@ export default function HeroSlider({ videos }: IProps) {
         ssr={false}
         responsive={responsiveHero}
         autoPlay
-        autoPlaySpeed={4000}
+        autoPlaySpeed={8000}
         infinite
       >
         {videos
@@ -48,6 +48,9 @@ export default function HeroSlider({ videos }: IProps) {
                 className="w-full h-full"
                 key={video.id}
                 src={video.videoUrl}
+                autoPlay
+                loop
+                muted
               >
                 <track kind="captions" />
               </video>
