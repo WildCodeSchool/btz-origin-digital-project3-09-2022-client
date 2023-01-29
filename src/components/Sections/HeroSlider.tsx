@@ -5,7 +5,6 @@ import Carousel from "react-multi-carousel";
 import Image from "next/image";
 import { Tvideo } from "../../types/apiTypes";
 import "react-multi-carousel/lib/styles.css";
-import { useEffect, useState } from "react";
 
 const responsiveHero = {
   superLargeDesktop: {
