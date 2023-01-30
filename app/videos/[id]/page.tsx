@@ -25,16 +25,19 @@ export default async function VideoDetails({ params }: any) {
   return (
     <div className="flex flex-col min-h-[calc(100vh-64px)]">
       <div className="bg-primary_bg h-20"> </div>
-      <div className="text-primary_font flex">
-        <div className="flex flex-col w-1/2 p-4">
+      <div className="text-primary_font flex flex-col-reverse md:flex-row">
+        {/* <div className="flex flex-col w-1/2 p-4"> */}
+        <div className="flex flex-col p-4 md:w-1/2">
           {video.isPublic === false ? (
-            <div className="text-xl pb-3 border-b border-primary_font flex items-center ">
-              <Image
-                src="/lock_full_logo.svg"
-                alt="logo share"
-                width="40"
-                height="40"
-              />
+            <div className="text-xl pb-3 border-b border-primary_font flex items-center">
+              <div className="p-2">
+                <Image
+                  src="/lock_full_logo.svg"
+                  alt="logo share"
+                  width="40"
+                  height="40"
+                />
+              </div>
               Content reserved for discovery and Premium pass subscription.
             </div>
           ) : (
@@ -42,7 +45,7 @@ export default async function VideoDetails({ params }: any) {
           )}
           <div className="text-xl py-2 flex justify-between">
             {video.title}{" "}
-            <div className="flex">
+            <div className="flex items-center">
               {token ? <Favorite id={video.id} /> : <p />}
               <ShareVideo id={video.id} />
             </div>
@@ -55,7 +58,7 @@ export default async function VideoDetails({ params }: any) {
           </div>
         </div>
         {token || video.isPublic ? (
-          <div className="relative w-1/2 p-4">
+          <div className="relative w-full md:w-1/2 p-4">
             <video key={video.id} src={video.videoUrl} controls>
               {" "}
               <track kind="captions" />
