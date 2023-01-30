@@ -19,7 +19,7 @@ export default function Grid({
 }: IProps) {
   return (
     <div className="flex flex-col p-3">
-      <p className="text-2xl p-3">{title}</p>
+      <p className="text-lg md:text-2xl p-3">{title}</p>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {videos
           .filter((video: Tvideo) => video.display === true)

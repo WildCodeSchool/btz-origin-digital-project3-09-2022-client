@@ -41,7 +41,7 @@ export default function CarouselStatic({
 }: IProps) {
   return (
     <div className="flex flex-col p-3">
-      <p className="text-2xl p-3">{title}</p>
+      <p className="text-lg md:text-2xl p-3">{title}</p>
       <Carousel ssr={false} responsive={responsive}>
         {videos
           .filter((video) => video.display === true)

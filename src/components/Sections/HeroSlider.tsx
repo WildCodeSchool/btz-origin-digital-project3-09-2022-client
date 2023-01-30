@@ -53,15 +53,13 @@ export default function HeroSlider({ videos }: IProps) {
               >
                 <track kind="captions" />
               </video>
-              <div className="absolute inset-x-0 bottom-0 text-2xl p-4 bg-gray-700 bg-opacity-25">
+              <div className="absolute inset-x-0 bottom-0 text-lg md:text-2xl p-4 bg-gray-700 bg-opacity-25">
                 <Link key={video.id} href={`/videos/${video.id}`}>
                   {video.title}
                 </Link>
-                <p className="hidden md:flex md: text-lg">
-                  {video.description}
-                </p>
+                <p className="hidden md:flex md:text-lg">{video.description}</p>
               </div>
-              <div className="absolute inset-x-0 bottom-1/2 left-1/2">
+              <div className="hidden md:flex absolute inset-x-0 bottom-1/2 left-1/2">
                 <Link key={video.id} href={`/videos/${video.id}`}>
                   <Image
                     src="/play_logo.svg"

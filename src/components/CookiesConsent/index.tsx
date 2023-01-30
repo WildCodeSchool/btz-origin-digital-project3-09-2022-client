@@ -1,14 +1,23 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import CookieConsent from "react-cookie-consent";
-import { useAuth } from "../../context/UserContext";
 
 function CookiesConsent() {
-  const { handleCookiesConsent, cookiesConsent } = useAuth();
+  const [cookieConsentDisplay, setCookieConsentDisplay] = useState("hidden");
+  useEffect(() => {
+    if (!document.cookie.includes("CookieConsent=true"))
+      setCookieConsentDisplay("show");
+  }, []);
+
+  const handleDisplay = () => {
+    setCookieConsentDisplay("hidden");
+  };
+
   return (
     <CookieConsent
-      onAccept={handleCookiesConsent}
-      visible={cookiesConsent ? "hidden" : "show"}
+      onAccept={() => handleDisplay()}
+      visible={cookieConsentDisplay}
       debug
       buttonText="I accept"
     >

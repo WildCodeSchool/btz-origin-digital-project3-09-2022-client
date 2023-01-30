@@ -36,6 +36,7 @@ export default function Favorite({ id }: IProps) {
 
   const removeVideoFavorite = async () => {
     await axiosInstance.delete(`/favorites/${favorite}`);
+    setFavorite(undefined);
     router.refresh();
   };
 
@@ -52,8 +53,8 @@ export default function Favorite({ id }: IProps) {
           className="cursor-pointer"
           src="/full_heart_logo.svg"
           alt="logo share"
-          width="40"
-          height="40"
+          width="25"
+          height="25"
           onClick={() => {
             removeVideoFavorite();
           }}
@@ -63,8 +64,8 @@ export default function Favorite({ id }: IProps) {
           className="cursor-pointer"
           src="/empty_heart_logo.svg"
           alt="logo share"
-          width="40"
-          height="40"
+          width="25"
+          height="25"
           onClick={() => {
             addVideoFavorite();
           }}
