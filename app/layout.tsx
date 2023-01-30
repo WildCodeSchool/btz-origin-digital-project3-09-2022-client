@@ -11,13 +11,15 @@ type Props = {
 
 const getAllPages = async () => {
   const token = cookies().get("token");
-  const pages = await fetch(`${process.env.API_URL}/pages` || "apiurl", {
-    credentials: "include",
-    headers: {
-      Authorization: token?.value as string,
-    },
-    // cache: "no-store",
-  });
+  const pages = await fetch(
+    `${process.env.API_URL}/pages?display=true` || "apiurl",
+    {
+      credentials: "include",
+      headers: {
+        Authorization: token?.value as string,
+      },
+    }
+  );
   const pagesJson = await pages.json();
 
   return pagesJson;

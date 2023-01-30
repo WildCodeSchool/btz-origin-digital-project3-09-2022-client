@@ -14,7 +14,7 @@ interface IProps {
 
 export default function Favorite({ id }: IProps) {
   const { user } = useAuth();
-  const [favorite, setFavorite] = useState(false);
+  const [favorite, setFavorite] = useState();
   const router = useRouter();
 
   const isVideoFavorite = async () => {
@@ -25,35 +25,29 @@ export default function Favorite({ id }: IProps) {
 
   const addVideoFavorite = async () => {
     const { data } = await axiosInstance.post(
-      `/favorites/add`,
+      "/favorites/",
       JSON.parse(JSON.stringify({ videoId: id }))
     );
 
-    setFavorite(true);
+    setFavorite(data.id);
 
     return data;
   };
 
   const removeVideoFavorite = async () => {
-    const { data } = await axiosInstance.post(
-      `/favorites/remove`,
-      JSON.parse(JSON.stringify({ videoId: id }))
-    );
-    setFavorite(false);
+    await axiosInstance.delete(`/favorites/${favorite}`);
     router.refresh();
-
-    return data;
   };
 
   useEffect(() => {
     if (user) {
-      isVideoFavorite().then((res) => setFavorite(res));
+      isVideoFavorite().then((data) => (data ? setFavorite(data.id) : ""));
     }
   }, []);
 
   return (
     <div>
-      {favorite === true ? (
+      {favorite ? (
         <Image
           className="cursor-pointer"
           src="/full_heart_logo.svg"

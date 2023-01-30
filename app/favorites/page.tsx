@@ -12,8 +12,8 @@ const getFavoriteVideos = async () => {
       Authorization: token?.value as string,
     },
   });
-  const pageJson = await res.json();
-  return pageJson as Tvideo[];
+  const videoJson = await res.json();
+  return videoJson as Tvideo[];
 };
 
 export default async function Favorites() {
