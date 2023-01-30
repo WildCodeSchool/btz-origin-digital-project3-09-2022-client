@@ -4,7 +4,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/dot-notation */
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   TUserWithoutPassword,
   TCredentials,
@@ -63,6 +63,21 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
     }));
     router.push("/");
   };
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const { data } = await axiosInstance.post("auth/me");
+        setAuthState(() => ({
+          isAuth: true,
+          user: data,
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    checkAuth();
+  }, []);
 
   return (
     <UserContext.Provider
