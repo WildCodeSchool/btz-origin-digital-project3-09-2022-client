@@ -103,7 +103,7 @@ export default function Navbar({ pages }: IProps) {
                 <button
                   type="button"
                   onClick={() => router.push("/favorites")}
-                  className="hidden px-2 md:flex"
+                  className="hidden px-5 md:flex"
                 >
                   Favorites
                 </button>
@@ -111,6 +111,20 @@ export default function Navbar({ pages }: IProps) {
             ) : (
               ""
             )}
+            <li>
+              <button
+                type="button"
+                onClick={() => router.push("/search")}
+                className="hidden px-5 md:flex"
+              >
+                <Image
+                  src="/logo_search.png"
+                  width={24}
+                  height={24}
+                  alt="logo search"
+                />
+              </button>
+            </li>
           </ul>
         </div>
         <div className="w-2/3 md:w-1/3 grid place-items-center border-2 m-4 border-primary_font">

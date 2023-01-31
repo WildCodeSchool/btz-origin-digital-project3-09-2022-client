@@ -21,18 +21,22 @@ export default function Grid({
     <div className="flex flex-col p-3">
       <p className="text-lg md:text-2xl p-3">{title}</p>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-        {videos
-          .filter((video: Tvideo) => video.display === true)
-          .map((video: Tvideo) => (
-            <div key={video.id} className="relative shadow-2xl">
-              <Thumbnail video={video} />
-              <VideoCard
-                video={video}
-                activeFavorite={activeFavorite}
-                displayFavorite={displayFavorite}
-              />
-            </div>
-          ))}
+        {videos.length > 0 ? (
+          videos
+            .filter((video: Tvideo) => video.display === true)
+            .map((video: Tvideo) => (
+              <div key={video.id} className="relative shadow-2xl">
+                <Thumbnail video={video} />
+                <VideoCard
+                  video={video}
+                  activeFavorite={activeFavorite}
+                  displayFavorite={displayFavorite}
+                />
+              </div>
+            ))
+        ) : (
+          <p> No videos...</p>
+        )}
       </div>
     </div>
   );
