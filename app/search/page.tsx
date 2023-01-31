@@ -29,9 +29,9 @@ export default function Search() {
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-64px)] bg-blue-400">
+    <div className="flex flex-col min-h-[calc(100vh-64px)]">
       <div className="bg-primary_bg h-20"> </div>
-      <div className="text-primary_font flex flex-col w-screen ">
+      <div className="text-primary_font flex flex-col w-screen">
         <form className="flex text-black h-20 justify-center items-center">
           <div className="px-1">
             <input

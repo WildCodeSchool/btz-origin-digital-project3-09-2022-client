@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import CookiesConsent from "../../../src/components/CookiesConsent";
 import Ad from "../../../src/components/Sections/Ad";
+import CarouselDynamic from "../../../src/components/Sections/CarouselDynamic";
 import CarouselStatic from "../../../src/components/Sections/CarouselStatic";
 import Grid from "../../../src/components/Sections/Grid";
 import HeroSlider from "../../../src/components/Sections/HeroSlider";
@@ -56,6 +57,7 @@ export default async function Page({ params }: any) {
               displayFavorite
               videos={section.sectionsStatics.videos}
               title={section.sectionsStatics.title}
+              id={section.sectionsStatics.id}
             />
           );
         }
@@ -70,11 +72,12 @@ export default async function Page({ params }: any) {
                   section.sectionsDynamic.max
                 )}
                 title={section.sectionsDynamic.title}
+                id={section.sectionsDynamic.id}
               />
             );
 
           return (
-            <CarouselStatic
+            <CarouselDynamic
               activeFavorite={false}
               displayFavorite
               videos={getMultipleRandom(
@@ -82,6 +85,7 @@ export default async function Page({ params }: any) {
                 section.sectionsDynamic.max
               )}
               title={section.sectionsDynamic.title}
+              id={section.sectionsDynamic.id}
             />
           );
         }

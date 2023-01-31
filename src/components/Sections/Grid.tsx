@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Tvideo } from "../../types/apiTypes";
 import Thumbnail from "./Thumbnail";
 import VideoCard from "./VideoCard";
@@ -8,7 +9,8 @@ interface IProps {
   videos: Tvideo[];
   activeFavorite: boolean;
   displayFavorite: boolean;
-  title: string;
+  title?: string;
+  id?: string;
 }
 
 export default function Grid({
@@ -16,10 +18,21 @@ export default function Grid({
   activeFavorite,
   displayFavorite,
   title,
+  id,
 }: IProps) {
   return (
     <div className="flex flex-col p-3">
-      <p className="text-lg md:text-2xl p-3">{title}</p>
+      {id ? (
+        <Link
+          href={{
+            pathname: `/dynamic-sections/${id}`,
+          }}
+        >
+          <p className="text-lg md:text-2xl p-3">{title}</p>
+        </Link>
+      ) : (
+        <p className="text-lg md:text-2xl p-3">{title}</p>
+      )}
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {videos.length > 0 ? (
           videos
