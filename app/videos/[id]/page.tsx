@@ -4,7 +4,7 @@ import { cookies } from "next/headers"; // Import cookies
 import Favorite from "../../../src/components/Favorite";
 import ShareVideo from "../../../src/components/ShareVideo";
 
-const getOneVideo = async (id: any) => {
+const getOneVideo = async (id: string) => {
   const res = await fetch(`${process.env.API_URL}/videos/${id}` || "apiurl", {
     credentials: "include",
   });
