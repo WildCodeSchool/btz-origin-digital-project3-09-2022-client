@@ -20,6 +20,7 @@ export default function Thumbnail({ video }: IProps) {
         alt="thumbnail"
         width="80"
         height="80"
+        priority
         onMouseEnter={() => setTeaser(true)}
         onMouseLeave={() => setTeaser(false)}
       />
