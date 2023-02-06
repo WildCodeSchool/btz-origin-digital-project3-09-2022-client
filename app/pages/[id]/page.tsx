@@ -34,9 +34,20 @@ const extractSections = (page: any) => {
 export default async function Page({ params }: any) {
   const page = await getOnePage(params.id);
   const sections = extractSections(page);
+  const url = `${process.env.NEXT_PUBLIC_PROD_URL}/pages/${params.id}`;
+  const title = `Whatever You Watch - ${page.title}`;
 
   return (
     <div className=" bg-primary_bg text-primary_font w-screen min-h-[calc(100vh-64px)]">
+      <head>
+        <title>{title}</title>
+
+        <meta name="title" content={title} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:image" content="/wyw_logo_svg" />
+      </head>
       {page.title !== "Homepage" ? (
         <div className="bg-primary_bg h-20"> </div>
       ) : (
