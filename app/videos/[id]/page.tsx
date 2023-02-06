@@ -24,6 +24,17 @@ export default async function VideoDetails({ params }: any) {
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-64px)]">
+      <head>
+        <title>{video.title}</title>
+
+        <meta name="title" content={video.title} />
+        <meta name="description" content={video.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={video.videoUrl} />
+        <meta property="og:title" content={video.title} />
+        <meta property="og:description" content={video.description} />
+        <meta property="og:image" content={video.thumbnailUrl} />
+      </head>
       <div className="bg-primary_bg h-20"> </div>
       <div className="text-primary_font flex flex-col-reverse md:flex-row">
         {/* <div className="flex flex-col w-1/2 p-4"> */}
