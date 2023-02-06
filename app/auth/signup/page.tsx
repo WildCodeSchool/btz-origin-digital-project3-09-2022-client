@@ -43,9 +43,11 @@ export default function Signup() {
         });
         router.push("/auth/signin");
       } else {
+        // eslint-disable-next-line no-alert
         alert("Confirm Password is not the same as password");
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   };
