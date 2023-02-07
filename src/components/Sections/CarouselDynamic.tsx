@@ -35,7 +35,7 @@ interface IProps {
   id: string;
 }
 
-export default function CarouselStatic({
+export default function CarouselDynamic({
   videos,
   activeFavorite,
   displayFavorite,
@@ -46,13 +46,12 @@ export default function CarouselStatic({
     <div className="flex flex-col p-3">
       <Link
         href={{
-          pathname: `/static-sections/${id}`,
+          pathname: `/dynamic-sections/${id}`,
         }}
       >
         <p className="text-lg md:text-2xl p-3">{title}</p>
       </Link>
-
-      <Carousel ssr={false} responsive={responsive} infinite>
+      <Carousel ssr={false} responsive={responsive}>
         {videos
           .filter((video) => video.display === true)
           .map((video) => (

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import CookiesConsent from "../../../src/components/CookiesConsent";
 import Ad from "../../../src/components/Sections/Ad";
+import CarouselDynamic from "../../../src/components/Sections/CarouselDynamic";
 import CarouselStatic from "../../../src/components/Sections/CarouselStatic";
 import Grid from "../../../src/components/Sections/Grid";
 import HeroSlider from "../../../src/components/Sections/HeroSlider";
@@ -34,9 +35,20 @@ const extractSections = (page: any) => {
 export default async function Page({ params }: any) {
   const page = await getOnePage(params.id);
   const sections = extractSections(page);
+  const url = `${process.env.NEXT_PUBLIC_PROD_URL}/pages/${params.id}`;
+  const title = `Whatever You Watch - ${page.title}`;
 
   return (
     <div className=" bg-primary_bg text-primary_font w-screen min-h-[calc(100vh-64px)]">
+      <head>
+        <title>{title}</title>
+
+        <meta name="title" content={title} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:image" content="/wyw_logo_svg" />
+      </head>
       {page.title !== "Homepage" ? (
         <div className="bg-primary_bg h-20"> </div>
       ) : (
@@ -56,6 +68,7 @@ export default async function Page({ params }: any) {
               displayFavorite
               videos={section.sectionsStatics.videos}
               title={section.sectionsStatics.title}
+              id={section.sectionsStatics.id}
             />
           );
         }
@@ -70,11 +83,12 @@ export default async function Page({ params }: any) {
                   section.sectionsDynamic.max
                 )}
                 title={section.sectionsDynamic.title}
+                id={section.sectionsDynamic.id}
               />
             );
 
           return (
-            <CarouselStatic
+            <CarouselDynamic
               activeFavorite={false}
               displayFavorite
               videos={getMultipleRandom(
@@ -82,6 +96,7 @@ export default async function Page({ params }: any) {
                 section.sectionsDynamic.max
               )}
               title={section.sectionsDynamic.title}
+              id={section.sectionsDynamic.id}
             />
           );
         }

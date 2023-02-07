@@ -86,6 +86,16 @@ export default function Menuburger({ pages }: IProps) {
       ) : (
         ""
       )}
+      <button
+        type="button"
+        onClick={() => {
+          router.push("/search");
+          closeSideBar();
+        }}
+        className="px-2"
+      >
+        Search
+      </button>
     </Menu>
   );
 }
