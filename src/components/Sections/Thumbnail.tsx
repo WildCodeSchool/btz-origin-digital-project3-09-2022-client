@@ -18,8 +18,8 @@ export default function Thumbnail({ video }: IProps) {
         className="w-full h-full z-50"
         src={teaser ? video.teaserUrl : video.thumbnailUrl}
         alt="thumbnail"
-        width="80"
-        height="80"
+        width="320"
+        height="320"
         priority
         onMouseEnter={() => setTeaser(true)}
         onMouseLeave={() => setTeaser(false)}
