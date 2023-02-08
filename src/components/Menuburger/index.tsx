@@ -28,7 +28,7 @@ export default function Menuburger({ pages }: IProps) {
 
   return (
     <Menu
-      width={150}
+      width={170}
       noOverlay
       className=""
       isOpen={isOpen}
