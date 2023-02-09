@@ -31,7 +31,9 @@ export default async function Layout({ children }: Props) {
   return (
     <html lang="en">
       <head>
+        <title>Whatever You Watch</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon_logo_WYW.ico" />
       </head>
       <UserContextProvider>
         <body className="bg-primary_bg flex flex-col">
